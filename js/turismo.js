@@ -3,7 +3,7 @@ const contenedor = document.getElementById("contenedor");
 const mensaje = document.getElementById("mensaje");
 
 //Respadldo de la imegen del API
-const IMAGEN_RESPLANDOR = ""
+const IMAGEN_RESPALDO_TURISMO = "img/turismo-colombia";
 
 mensaje.textContent = "Cargar atracciones turísticas.... "
 
@@ -34,5 +34,25 @@ function crearTarjeta(atraccion) {
 
     const img = document.createElement("img");
 
-    img.src = atraccion.image
+    img.src = atraccion.images?.[0] || IMAGEN_RESPALDO_TURISMO;
+    img.alt = atraccion.name;
+
+   img.onerror = () => {
+    img.onerror = null;
+    img.src = IMAGEN_RESPALDO_TURISMO;
+   }; 
+
+   const titulo = document.createElement("h3");
+   titulo.textContent = atraccion.name;
+
+   const lugar = document.createElement("p");
+   lugar.classList.add("lugar");
+   lugar.textContent = "🗺️" + (atraccion.city?.name || "Ciudad no disponible.");
+
+   const descripcion = document.createElement("p");
+   descripcion.textContent = atraccion.description || "Sin descripción.";
+
+   tarjeta.append(img,titulo,lugar,descripcion);
+
+   return tarjeta;
 }
