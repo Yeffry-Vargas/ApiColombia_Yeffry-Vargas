@@ -1,29 +1,27 @@
 const URL_API ="https://api-colombia.com/api/v1/TypicalDish"
 const contenedor = document.getElementById("contenedor")
 const mensaje = document.getElementById("mensaje")
-
-//Imgaen de respaldo 
-const IMAGEN_RESPALDO_SABORES = "img/sabores-colombia";
+const IMAGEN_RESPALDO_SABORES = "img/sabores-colombia.jpg";
 
 mensaje.textContent = "Cargado platillos tipicos en colombia...."
 
 fetch (URL_API)
     .then(respuesta => {
         if (!respuesta.ok) {
-            throw new Error("Error del servidor: "+ respuesta)
+            throw new Error("Error del servidor: "+ respuesta.status)
         }
         return respuesta.json();
     })
 
     .then(datos => {
         console.log(datos[0]);
-        mensaje.textContent="";
+        mensaje.textContent="Total de platillos tipicos: " + datos.length;
 
-        const primeras20 =datos.slice(0.20);
-        primeras20.array.forEach(platos => {
+        datos.forEach(platos => {
             contenedor.appendChild(crearTarjeta(platos));
         });
     })
+
     .catch(error => {
         mensaje.textContent="No se pudieron cargar los datos. Por favor intenta más tarde. ;)"
         console.error(error);
@@ -35,8 +33,8 @@ function crearTarjeta(platos){
 
     const img = document.createElement("img");
 
-    img.src = atraccion.images?. [0] || IMAGEN_RESPALDO_SABORES;
-    img.alt = atraccion.name;
+    img.src = platos.imageUrl || IMAGEN_RESPALDO_SABORES;
+    img.alt = platos.name;
 
     img.onerror = () => {
         img.onerror = null;
@@ -48,11 +46,11 @@ function crearTarjeta(platos){
 
     const lugar = document.createElement("p");
     lugar.classList.add("lugar");
-    lugar.textContent = "🍽️" + (platos.city?.name || "Platillo no disponible o aun no se crea. :/")
+    lugar.textContent = "🍽️ " + (platos.department?.name || "Departamento no disponible Platillo no disponible o aun no se crea. :/");
 
     const descripcion = document.createElement("p");
-    descripcion.textContent = platos.descripcion || "Sin descripcion. ";
-    tarjeta.append(img,titulo,lugar,descripcion);
+    descripcion.textContent = platos.description || "Sin descripción.";
 
+    tarjeta.append(img,titulo,lugar,descripcion);
     return tarjeta;
 }

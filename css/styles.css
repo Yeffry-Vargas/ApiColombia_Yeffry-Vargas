@@ -1,0 +1,80 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;   
+    color: #222;           
+}
+
+
+header {
+    background: #fcd116;   
+    padding: 1rem 2rem;
+    display: flex;                    
+    justify-content: space-between;  
+    align-items: center;              
+    flex-wrap: wrap;                  
+}
+
+nav a {
+    margin-left: 1rem;
+    color: #003893;        
+    font-weight: bold;
+    text-decoration: none; 
+}
+
+nav a:hover {
+    color: #ce1126;        
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;     
+    margin: 0 auto;       
+}
+
+#mensaje {
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.tarjeta {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;      
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding-bottom: 1rem;
+    transition: transform 0.2s;   
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);  
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;   
+    display: block;        
+}
+
+.tarjeta h3,
+.tarjeta p {
+    padding: 0.5rem 1rem 0;
+}
+
+.lugar {
+    color: #003893;
+    font-weight: bold;
+}

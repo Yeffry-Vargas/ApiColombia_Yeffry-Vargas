@@ -3,7 +3,7 @@ const contenedor = document.getElementById("contenedor");
 const mensaje = document.getElementById("mensaje");
 
 //Respadldo de la imegen del API
-const IMAGEN_RESPALDO_TURISMO = "img/turismo-colombia";
+const IMAGEN_RESPALDO_TURISMO = "img/turismo-colombia.jpg";
 
 mensaje.textContent = "Cargar atracciones turísticas.... "
 
